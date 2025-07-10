@@ -1,0 +1,86 @@
+1.Overview:
+We need to develop an RESTful API for the social media platform which we will call Sync. This API will help in communication between the frontend and the backend.
+This API will support functionalities like:
+User sign-up ➖ Take the user’s details and store it securely in the database
+User login ➖ Take User Credentials and match with the stored data for authentication
+Friend Request ➖Send friend request and accept or reject friend request
+Posts ➖ Create a post, Like post and, List posts.
+This API will use token-based authentication(JWT) to protect the private routes
+
+2.Base URL:
+https://sync.media.com
+
+3.Authentication:
+The API will support multiple authentication mechanisms to ensure secure access:
+	1	Username/Email and Password Login Users log in using their registered email or username along with a password. The credentials are verified against the stored (hashed) values in the database. Upon successful authentication, a JWT (JSON Web Token) is generated and returned to the user.
+	2	Token-Based Authentication (JWT) Once logged in, users receive a JWT token. This token must be included in the Authorization header for all subsequent protected API requests. The token carries user identity and is used for both authentication and authorization.
+	3	Optional: Multi-Factor Authentication (MFA) Users may enable MFA (e.g., via OTP or authenticator apps) for enhanced security. This step is prompted after successful password verification.
+	4	Optional: Magic Link Login As an alternative to password login, users may request a login link to their registered email. Clicking the link logs them in and issues a JWT token.
+
+4.Endpoints:
+	1	User sign-up-
+	◦	URL ~ https://sync.media.com/register
+	◦	HTTP method ~ POST
+	◦	Request headers (if any) ~ Content-Type: application/json Accept: application/json
+	◦	Request body (with example) ~ { “name” :””Honey Bhandari”, “username”: “Honey1234”, “email”:”absd@gmail.com”, “password”:”dcsekugcf” }
+	◦	Response body (with example) ~ { ”message” : “Successfully registered”, "user": { "id": "64a8c01c78efb90015b88812", "name": "Honey Bhandari", "email": "absd@gmail.com", "username": "Honey1234" }, "token": "eyJI6IkpXVCJ9...”, } or { "error": "Email already exists." }
+	◦	Status codes ~ 201 created : registration successful 400 bad request : missing or invalid fields 409 conflict : username and email exists already
+	◦	Description of each endpoint ~ Registers a new user account by storing their credentials in the database. The password is hashed before storage. A unique userId is returned on success , along with a token which will be stored in the cookie for further communication.
+b. User login-
+	•	URL ~ https://sync.media.com/login
+	•	HTTP method ~ POST
+	•	Request headers (if any) ~ Content-Type: application/json Accept: application/json
+	•	Request body (with example) ~ { “username”: “Honey1234”, “password”:”dcsekugcf” }
+	•	Response body ~ { ”message” : “Login successful”, "user": { "id": "64a8c01c78efb90015b88812", "name": "Honey Bhandari", "username": "Honey1234" }, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." } or { "error": "Invalid credentials." }
+	•	Status codes ~ 200 OK : Login successful 400 bad request : missing or invalid fields 401 Unauthorized : Invalid username or password
+	•	Description ~ Check the User exists or not in the database. If yes, check the password otherwise tell the user to register first. On successful authentication, returns the user's unique ID and a fresh token (usually a JWT) which can be stored in the browser's cookie or localStorage for future authenticated requests.
+c. Send friend request -
+	•	URL ~ https://sync.media.com/friend/send-request
+	•	HTTP method ~ POST
+	•	Request headers ~ Authorization : bearer <token_id> Content-Type: application/json
+	•	Request body (with example) ~ { "toUserID": "a1b2c3d4" }
+	•	Response body ~ { "message": "Friend request sent successfully.", "request": { "id": "789a5f12ab67cd009a78ab90", "senderId": "34er5", "receiverId": "a1b2c3d4", "status": "pending" } } or { "error": "User not found." }
+	•	Status codes ~ 201 created : friend request sent 404 Not Found: Target user does not exists 401 Unauthorized : missing or invalid token
+	•	Description ~ This endpoint allows an authenticated user to send a friend request to another user. It requires a valid token in the Authorization header to ensure the request is made by a logged-in user. The request body should include the userID of the recipient and sender. A unique request ID is returned for tracking purposes.
+d. Accept or reject friend request
+	•	URL ~ https://sync.media.com/friend/respond
+	•	HTTP method ~ POST
+	•	Request headers (if any) ~ Authorization : bearer <token_id> Content-Type: application/json
+	•	Request body (with example) ~ { "ReqID": "a1b2c3d4" , }
+	•	Response body (on reject)~ { "message": "Friend request rejected", } Response body (on accept)~ { "message": "Friend request accepted", "friendID": "a1b2c3d4" }
+	•	Status codes ~ 200 OK : friend request accepted or rejected 404 Not Found: Request not found 401 Unauthorized : missing or invalid token 409 conflict : Already accepted/rejected
+	•	Description ~ Allows the authenticated user to respond to a pending friend request by either accepting or rejecting it.
+e. Create a post (text max 256 characters)
+	•	URL ~ https://sync.media.com/posts/create
+	•	HTTP method ~ POST
+	•	Request headers (if any) ~ Authorization : bearer <token_id> Content-Type: multipart/form-data
+	•	Request body (with example) ~ Form Data: content: "My vacation begins!" image: [file.jpg]
+	•	Response body~ { "message": "Post created successfully.", "post": { "id": "9b10aa8c7f88ce00168a1234", "userId": "64a8c01c78efb90015b88812", "content": "Just finished my first post", “imageUrl”:”https://syhs.fhdu.com”, "createdAt": "2025-07-10T05:32:18.000Z" } } or { "error": "Post content must be between 1 and 256 characters." }
+	•	Status codes ~ 201 created : post created successfully 400 Bad request : validation failed 401 Unauthorized : missing or invalid token
+	•	Description ~ This endpoint allows authenticated users to create a post with: Text content (max 256 characters) and an optional image or video file
+f. like post
+	•	URL ~ https://sync.media.com/posts/:postid/like
+	•	HTTP method ~ POST
+	•	Request headers (if any) ~ Authorization : bearer <token_id> Content-Type: application/json
+	•	Request body (with example) ~ NA
+	•	Response body ~ { "message": "Post liked.", //or unliked "likesCount": 12 } or { "error": "Post not found." }
+	•	Status codes ~ 200 OK : post liked/unliked 401 Unauthorized : missing or invalid token 404 not found
+	•	Description ~ This endpoint allows a user to like or unlike a post. Likes are tied to the authenticated user’s ID. The response includes the updated like count. Prevents duplicate likes by toggling the state.
+g. lists post
+	•	URL ~ https://sync.media.com/posts
+	•	HTTP method ~ GET
+	•	Request headers (if any) ~ Authorization : bearer <token_id> Accept: application/json
+	•	Request body (with example) ~ NA
+	•	Response body ~ { "posts": [ { "id": "9b10aa8c7f88ce00168a1234", "user": { "id": "64a8c01c78efb90015b88812", "username": "honeyb", "name": "Honey Bhandari" }, "content": "Just deployed my first API! 🚀", "imageUrl": null, "videoUrl": null, "likesCount": 10, "createdAt": "2025-07-10T06:12:00.000Z" }, ... ] }
+	•	Status codes ~ 200 OK : post returned 401 Unauthorized : missing or invalid token 500 Internal server error
+	•	Description ~ This endpoint returns a paginated list of posts from all users. Posts can include text, image, or video.
+
+5.Validation:
+username : can only contain number , alphabets and symbols like @$&
+password : should be 8 character long, should contain a-z , A-Z, 0-9 and Special characters
+email : should be a valid email address
+post-content: text should be max 256 characters
+
+6.Security:
+Passwords are never stored in plain text. They are securely hashed using industry-standard hashing algorithms (e.g., bcrypt ) before being saved in the database.
+Other than this we will also use https for secure communication.
