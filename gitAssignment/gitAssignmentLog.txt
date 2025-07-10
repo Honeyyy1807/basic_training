@@ -1,0 +1,523 @@
+Last login: Thu Jul  3 13:41:54 on ttys000
+honeybhandari@Honeys-MacBook-Air ~ % cd desktop
+honeybhandari@Honeys-MacBook-Air desktop % mkdir local-repo
+honeybhandari@Honeys-MacBook-Air desktop % cd local-repo 
+honeybhandari@Honeys-MacBook-Air local-repo % ls    
+honeybhandari@Honeys-MacBook-Air local-repo % ls -a
+.	..
+honeybhandari@Honeys-MacBook-Air local-repo % git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /Users/honeybhandari/Desktop/local-repo/.git/
+honeybhandari@Honeys-MacBook-Air local-repo % ls -a
+.	..	.git
+honeybhandari@Honeys-MacBook-Air local-repo % ls
+honeybhandari@Honeys-MacBook-Air local-repo % git remote add origin "https://github.com/Honeyyy1807/i-am-a-git-noob.git"
+honeybhandari@Honeys-MacBook-Air local-repo % git config --list
+credential.helper=osxkeychain
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+core.precomposeunicode=true
+remote.origin.url=https://github.com/Honeyyy1807/i-am-a-git-noob.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+honeybhandari@Honeys-MacBook-Air local-repo % git config --local  --list
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+core.precomposeunicode=true
+remote.origin.url=https://github.com/Honeyyy1807/i-am-a-git-noob.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+honeybhandari@Honeys-MacBook-Air local-repo % git config user.name="Honeyyy1807"
+error: invalid key: user.name=Honeyyy1807
+honeybhandari@Honeys-MacBook-Air local-repo % git config user.name=Honeyyy1807 
+error: invalid key: user.name=Honeyyy1807
+honeybhandari@Honeys-MacBook-Air local-repo % git config user.name "Honeyyy1807"
+honeybhandari@Honeys-MacBook-Air local-repo % git config user.email "honey.bhandari@syvora.com"
+honeybhandari@Honeys-MacBook-Air local-repo % touch test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % echo "first line in file" > test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % cat test1.txt
+first line in file
+honeybhandari@Honeys-MacBook-Air local-repo % git add test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git commit -m "test1 file added"
+[master (root-commit) 8e701ec] test1 file added
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git push -u origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/Honeyyy1807/i-am-a-git-noob.git'
+honeybhandari@Honeys-MacBook-Air local-repo % git push -u origin master
+Username for 'https://github.com': Honeyyy1807
+Password for 'https://Honeyyy1807@github.com': 
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 240 bytes | 240.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: 
+remote: Create a pull request for 'master' on GitHub by visiting:
+remote:      https://github.com/Honeyyy1807/i-am-a-git-noob/pull/new/master
+remote: 
+To https://github.com/Honeyyy1807/i-am-a-git-noob.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+honeybhandari@Honeys-MacBook-Air local-repo % cat >> test1.txt
+second line in file
+^C
+honeybhandari@Honeys-MacBook-Air local-repo % git add test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   test1.txt
+
+honeybhandari@Honeys-MacBook-Air local-repo % git status --staged
+error: unknown option `staged'
+usage: git status [<options>] [--] [<pathspec>...]
+
+    -v, --[no-]verbose    be verbose
+    -s, --[no-]short      show status concisely
+    -b, --[no-]branch     show branch information
+    --[no-]show-stash     show stash information
+    --[no-]ahead-behind   compute full ahead/behind values
+    --[no-]porcelain[=<version>]
+                          machine-readable output
+    --[no-]long           show status in long format (default)
+    -z, --[no-]null       terminate entries with NUL
+    -u, --[no-]untracked-files[=<mode>]
+                          show untracked files, optional modes: all, normal, no. (Default: all)
+    --[no-]ignored[=<mode>]
+                          show ignored files, optional modes: traditional, matching, no. (Default: traditional)
+    --[no-]ignore-submodules[=<when>]
+                          ignore changes to submodules, optional when: all, dirty, untracked. (Default: all)
+    --[no-]column[=<style>]
+                          list untracked files in columns
+    --no-renames          do not detect renames
+    --renames             opposite of --no-renames
+    -M, --find-renames[=<n>]
+                          detect renames, optionally set similarity index
+
+honeybhandari@Honeys-MacBook-Air local-repo % cat >> test1.txt
+Third line in file
+^C
+honeybhandari@Honeys-MacBook-Air local-repo % git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   test1.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   test1.txt
+
+honeybhandari@Honeys-MacBook-Air local-repo % git reset test1.txt
+Unstaged changes after reset:
+M	test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git status         
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   test1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+honeybhandari@Honeys-MacBook-Air local-repo % git commit -m "my first commit"
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   test1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+honeybhandari@Honeys-MacBook-Air local-repo % git add test1.txt              
+honeybhandari@Honeys-MacBook-Air local-repo % git commit -m "my first commit"
+[master e9e9017] my first commit
+ 1 file changed, 2 insertions(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 281 bytes | 281.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Honeyyy1807/i-am-a-git-noob.git
+   8e701ec..e9e9017  master -> master
+honeybhandari@Honeys-MacBook-Air local-repo % git log origin/master
+commit e9e90178bbc10d376cfbb7d5ca6a1ffe1637b7ed (HEAD -> master, origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my first commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend
+error: there was a problem with the editor 'vi'
+Please supply the message using either -m or -F option.
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend -m "my Second commit"
+[master bc76075] my Second commit
+ Date: Thu Jul 3 17:40:24 2025 +0530
+ 1 file changed, 2 insertions(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git log origin/master
+commit e9e90178bbc10d376cfbb7d5ca6a1ffe1637b7ed (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my first commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+honeybhandari@Honeys-MacBook-Air local-repo % git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+nothing to commit, working tree clean
+honeybhandari@Honeys-MacBook-Air local-repo % git push --force origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 288 bytes | 288.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Honeyyy1807/i-am-a-git-noob.git
+ + e9e9017...bc76075 master -> master (forced update)
+honeybhandari@Honeys-MacBook-Air local-repo % diff HEAD~1 HEAD~2
+diff: HEAD~1: No such file or directory
+honeybhandari@Honeys-MacBook-Air local-repo % git diff HEAD~1 HEAD~2
+fatal: ambiguous argument 'HEAD~2': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+honeybhandari@Honeys-MacBook-Air local-repo % git diff HEAD~1 HEAD~2 -- test1.txt
+fatal: bad revision 'HEAD~2'
+honeybhandari@Honeys-MacBook-Air local-repo % git diff HEAD~1 HEAD -- test1.txt
+diff --git a/test1.txt b/test1.txt
+index f581c70..8619274 100644
+--- a/test1.txt
++++ b/test1.txt
+@@ -1 +1,3 @@
+ first line in file
++second line in file
++Third line in file
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (HEAD -> master, origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+honeybhandari@Honeys-MacBook-Air local-repo % git revert HEAD
+[master f2392ef] Revert "my Second commit"
+ 1 file changed, 2 deletions(-)
+honeybhandari@Honeys-MacBook-Air local-repo % git log        
+commit f2392efcdb4914c99f856eecffa868e444a1fc12 (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+honeybhandari@Honeys-MacBook-Air local-repo % cat >> test1.txt
+Fourth line in file
+^C
+honeybhandari@Honeys-MacBook-Air local-repo % git add test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git commit -m "fourth line added"
+[master b1b1bda] fourth line added
+ 1 file changed, 1 insertion(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend
+[master cade7ef] fourth line added Fifth line added
+ Date: Thu Jul 3 18:36:31 2025 +0530
+ 1 file changed, 1 insertion(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit cade7ef66868fe25432cd7328d1fbc0b4b47a342 (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:36:31 2025 +0530
+
+    fourth line added
+    Fifth line added
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+(END)
+
+    fourth line added
+    Fifth line added
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+(END)
+
+    fourth line added
+    Fifth line added
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+
+    test1 file added
+
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend
+[master ec5fea3] fourth line added echo "fifth line added" >> test1.txt
+ Date: Thu Jul 3 18:36:31 2025 +0530
+ 1 file changed, 1 insertion(+)
+honeybhandari@Honeys-MacBook-Air local-repo % cat test1.txt
+first line in file
+Fourth line in file
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit ec5fea3ca897187df4d443f03d45ada532f505de (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:36:31 2025 +0530
+
+    fourth line added
+    echo "fifth line added" >> test1.txt
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend
+[master 6a13d2c] fourth line added
+ Date: Thu Jul 3 18:36:31 2025 +0530
+ 1 file changed, 1 insertion(+)
+honeybhandari@Honeys-MacBook-Air local-repo % cat test1.txt
+first line in file
+Fourth line in file
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit 6a13d2c8575a6696ad65ea19138614c4ea3703a3 (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:36:31 2025 +0530
+
+    fourth line added
+    
+    echo "Fifth line added" >> test1.txt
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend --no-edit
+[master a2927ea] fourth line added
+ Date: Thu Jul 3 18:36:31 2025 +0530
+ 1 file changed, 1 insertion(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git rebase -i HEAD~1
+error: there was a problem with the editor 'vi'
+honeybhandari@Honeys-MacBook-Air local-repo % nano test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % cat test1.txt
+first line in file
+Fourth line in file
+Fifth line added
+honeybhandari@Honeys-MacBook-Air local-repo % git add test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend --no-edit
+[master fa33293] fourth line added
+ Date: Thu Jul 3 18:36:31 2025 +0530
+ 1 file changed, 2 insertions(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit fa3329339f185e6ef00664c3f76f28a170d400e9 (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:36:31 2025 +0530
+
+    fourth line added
+    
+    echo "Fifth line added" >> test1.txt
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+honeybhandari@Honeys-MacBook-Air local-repo % git commit --amend
+[master 0f49003] fourth line added
+ Date: Thu Jul 3 18:36:31 2025 +0530
+ 1 file changed, 2 insertions(+)
+honeybhandari@Honeys-MacBook-Air local-repo % git log
+commit 0f49003ec28de4afd25cd522b0ceec95898839a0 (HEAD -> master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:36:31 2025 +0530
+
+    fourth line added
+
+commit f2392efcdb4914c99f856eecffa868e444a1fc12
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 18:33:58 2025 +0530
+
+    Revert "my Second commit"
+    
+    This reverts commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b.
+
+commit bc76075f028e7fc8631ab81f48dbfce5ab6e422b (origin/master)
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:40:24 2025 +0530
+
+    my Second commit
+
+commit 8e701ec1bd9b33263c8d3baa7fc92caa85734c5e
+Author: Honeyyy1807 <honey.bhandari@syvora.com>
+Date:   Thu Jul 3 17:19:34 2025 +0530
+honeybhandari@Honeys-MacBook-Air local-repo % cat test1.txt
+first line in file
+Fourth line in file
+Fifth line added
+honeybhandari@Honeys-MacBook-Air local-repo % git push
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (6/6), 560 bytes | 560.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Honeyyy1807/i-am-a-git-noob.git
+   bc76075..0f49003  master -> master
+honeybhandari@Honeys-MacBook-Air local-repo % echo "new lines added" >> test1.txt
+honeybhandari@Honeys-MacBook-Air local-repo % git pull origin master
+From https://github.com/Honeyyy1807/i-am-a-git-noob
+ * branch            master     -> FETCH_HEAD
+Already up to date.
+honeybhandari@Honeys-MacBook-Air local-repo % cd ..
+honeybhandari@Honeys-MacBook-Air desktop % cd assignments-syvora-training
+honeybhandari@Honeys-MacBook-Air assignments-syvora-training % git clone "https://github.com/Honeyyy1807/i-am-a-git-noob.git"
+Cloning into 'i-am-a-git-noob'...
+remote: Enumerating objects: 13, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 13 (delta 1), reused 9 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (13/13), done.
+Resolving deltas: 100% (1/1), done.
+honeybhandari@Honeys-MacBook-Air assignments-syvora-training % 
