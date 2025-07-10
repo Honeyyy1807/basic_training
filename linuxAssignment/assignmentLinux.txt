@@ -1,0 +1,67 @@
+Commands Used:
+
+mkdir -p sample
+cd sample
+touch sample.txt
+echo "Hi! This is just a sample text file created using shell script" > sample.txt
+cat sample.txt
+grep -o t sample.txt | wc -l
+chmod u=rwx sample.txt
+echo "Hi! This is just another sample text added to the file " >> sample.txt
+chmod g=r sample.txt
+chmod o= sample.txt
+cp sample.txt sample2.txt
+for i in {1..1000}; do echo "Random line with number $RANDOM" >> sample.txt; done
+head -n 50 sample.txt
+tail -n 50 sample.txt
+touch prog1.txt prog2.txt program.txt code.txt info.txt
+ls sample | grep prog
+ls | grep prog
+alias list='ls | grep' 
+
+
+
+Questions AND Answers:
+
+Q1. What is the difference between source and sh commands?
+
+Ans. source is used to modify the current shell environment. Changes made persist after the script finishes.
+Sh is used to run script in new shell. Changes made does not affect the current shell.
+
+
+
+
+Q2.Create two files a.txt and b.txt. Write a command to find the difference between their contents.
+
+Ans. touch a.txt b.txt
+Echo “hello world” > a.txt
+Echo “hellooo” > b.txt
+diff a.txt b.txt
+
+Q3.What is the difference between ls and lsof?
+
+Ans. ls is used to list all files and directories in the current directory.
+Lsof is used to list all the open files. List all the files currently being used.
+
+Q4.Write a single mkdir command to create nested directories: ./hello/world (neither should exist already).
+
+Ans. mkdir -p ./hello/world
+
+Q5.How can you permanently set an environment variable in bash?
+
+Ans.export MYVAR="myvalue"
+
+Q6.A process is running on a port in your system. How can you:
+View which process is using the port?
+Kill that process from the terminal?
+
+Ans. lsof -i : <port>
+Kill <pid>
+Kill -9 <pid>
+
+
+
+
+
+
+
