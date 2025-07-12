@@ -1,0 +1,102 @@
+1.Create a private github repo named "i-am-a-git-noob"
+Ans. Login to github>>create new repo
+
+2.Create a new repository on local in an empty directory (NOTE: do not clone)
+Ans. mkdir local-repo 
+git init
+
+Ques: What changes did you observe in the current directory after initializing local repo?
+Ans.After initialising the repo with git init we get a hidden .git folder which we can see using ls-a. This git folder contains subfolders which takes care of history and tracks changes.
+
+3.Point remote of your local git repo to the newly created repo on github
+Ans. git remote add origin https://github.com/Honeyyy1807/i-am-a-git-noob.git
+
+4.Print current git configs on terminal
+Ans. git config --list
+
+5.Update git config with your name and email address (only for current repository)
+Ans. git config user.name "honey"
+git config user.email "honey@gamil.com"
+
+6.Create a file named "test1.txt"
+Ans. cd local-repo
+touch test1.txt
+
+7.Added line with text "first line in file" in "test1.txt".
+Ans. Echo "first line in file" >> test1.txt
+
+8.Push this file to your github repo.
+Ans. Git branch -m main
+Git push -u origin main
+
+Or
+
+Git push -u origin master
+
+9.Append line with text "second line in file" in "test1.txt".
+Ans. Echo "second line in file" >> test1.txt
+
+10.Add file to the staging area.
+Ans. Git add test1.txt
+
+11.Check the status of the file in all staging area
+Ans. Git status
+
+12.Append line with text "Third line in file" in "test1.txt". (Note status of files across different areas).
+Ans. Echo "Third line in file" >> test1.txt
+
+13.Remove "test1.txt" from the staging area.
+Ans.git restore --staged test1.txt
+Or
+Git reset test1.txt
+
+14.Create commit with message "My First Commit"
+Ans. Git commit -m "My first commit"
+
+15.Push commit to the remote repo
+Ans. Git push
+NOTE: checklist commits pushed to the remote
+git log origin/main --oneline
+
+16.Update message of last commit "My First Commit" to "My Second Commit" (without creating a new commit)
+Ans. Git commit --amend -m "My second commit"
+Or
+Git commit --amend
+Vim Editor will open
+Press I for insert
+Change the commit message
+Save and exit
+
+17.Push commit with the updated message to the remote repo
+Ans. Git push --force origin main
+
+18.Check the difference between the last and second last commits.
+Ans. Git diff HEAD HEAD~1 -- test1.txt
+
+19.Revert the last commit and check the updated commit logs history.
+Ans. Git revert HEAD
+
+20.Append line with text "Fourth line in file" in "test1.txt" and commit it.
+Ans.echo "fourth line in file" >> test1.txt
+Git add .
+Git commit -m "fourth line added"
+
+21.Update the last commit such that the "test1.txt"  also contains "Fifth line in file" (without creating a new commit)
+Ans. nano test1.txt
+Make changes , save it and exit
+Git commit --amend --no-edit
+
+22.Push the updated commits to the remote repository
+Ans. Git push
+
+23.Append some content in "test1.txt" file
+Ans. cat >> test1.txt
+"More lines added"
+
+24.Pull all the content from remote repository to local repository
+Ans. Git pull origin master
+
+25.Clone the remote repository to some other directory in your local system.
+Ans. cd into the directory then git clone https://github.com/Honeyyy1807/i-am-a-git-noob.git
+
+
