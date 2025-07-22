@@ -1,5 +1,6 @@
 const readline = require('readline');
 const calculator = require('./calci');
+const _=require('lodash')
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
