@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Backend Developer",
+    "description": "Looking for experience in Node.js, Express, and MongoDB.",
+    "tags": [
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Frontend Engineer",
+    "description": "Must know React and Redux. TypeScript is a plus.",
+    "tags": [
+      "React",
+      "Redux",
+      "TypeScript"
+    ]
+  }
+]
